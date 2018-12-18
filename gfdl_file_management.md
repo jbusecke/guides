@@ -52,5 +52,20 @@ Combined with find
 ## Check quota use
 `quotause j1b`
 
+## Copy files TO GFDL [?]
+I have not found a way to do this without copying them to my local machine and then to a node on analysis, because when logged into public it can not write...I will inquire with the helpdesk
+
+## Copy files from GFDL to tigress
+I route ssh connections via noble (which is not blocked from the 'outside world' like tiger and tigressdata).
+The following code needs to be in your `~/.ssh/config`.
+> I only recommend to use this for copying your own files (code etc.), since for many data at GFDL there are restrictions on how to move them off the system!
+
+```
+Host tiger-offcampus
+     User <username>
+     Hostname tiger.princeton.edu
+     ProxyCommand ssh -A <username>@nobel.princeton.edu -W %h:%p
+```
+
 
 
