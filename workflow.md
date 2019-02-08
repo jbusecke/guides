@@ -24,7 +24,7 @@ You can alleviate a lot of these problematic by using e.g. a script to set up yo
 So far this workflow does not need a lot of fancy organization. Just keep a tidy folder (easier said then done) and be happy. But now we have to talk about the main tool for our scientific analysis: Our code.
 
 ### Code Organization and Workflow
-Code development is a multi-step process, and [cookiecutter-science-project ](https://github.com/jbusecke/cookiecutter-science-project) helps making these steps as easy as possible.
+Code development is a multi-step process, and [cookiecutter-science-project ](https://github.com/jbusecke/cookiecutter-science-project) helps to eliminate some of the boring boilerplate steps.
 
 Usually I start to write code in my notebooks, test it quickly look at results and repeat.
 But eventually any logic that goes beyond ‘basic’ stuff and in particular if it should be reused in other notebooks, needs to be moved to a proper (installable) python module. Having an installable package makes the import process easy and someone else could just clone the whole repo install it and use your code anywhere on the system.
