@@ -41,7 +41,7 @@ If some of the code is so helpful that you want to use it across projects it wil
 
 ### Example
 1. Have a grandiose idea 💡
-2. Set up a project folder by following the [cookiecutter-science-project  instructions]() with the projectname `coolstuff` (obviously you chose the name, this is just an example!
+2. Set up a project folder by following the [instructions](https://github.com/jbusecke/cookiecutter-science-project/blob/master/README.md) with the projectname `coolstuff` (obviously you chose the name, this is just an example!
 3. Create your first awesome notebook within `notebooks` with a sensible name like `name_01_FirstSteps.ipynb`
 4. Hack away and science the 💩 out of your dataset.
 5. Whenever your done for the day, or just have discovered something cool, remember to commit your changes to github.
