@@ -28,6 +28,7 @@ Code development is a multi-step process, and [cookiecutter-science-project ](ht
 
 Usually I start to write code in my notebooks, test it quickly look at results and repeat.
 But eventually any logic that goes beyond ‘basic’ stuff and in particular if it should be reused in other notebooks, needs to be moved to a proper (installable) python module. Having an installable package makes the import process easy and someone else could just clone the whole repo install it and use your code anywhere on the system.
+
 ![](https://media.giphy.com/media/fDzM81OYrNjJC/giphy.gif)
 
 
