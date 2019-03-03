@@ -11,6 +11,13 @@ I needed a new solution. I wanted to be able to have a permanent central folder 
 
 I am using a fairly simple [bash script](https://github.com/jbusecke/server_setup/tree/master/scripts/gfdl_utils) to stage files to a mirror folder structure on `/work/ ` .  This way I can easily delete files on `/work` and restore them easily at any time, the links to the original files are neat and organized in `archive`.
 
+## History folders
+...
+### Viewing contents of tar archives.
+```
+tar -xvf 02000101.nc.tar
+```
+
 
 ## Untaring from history folders
 From within the `.history/` directory use a loop
