@@ -87,8 +87,8 @@ Check if the file is already present, and if not create it with
 ```bash
 jupyter notebook --generate-config
 ```
-
-Uncomment  the line `c.NotebookApp.port = 9997` and set the port number (in this example `9997` to any allowed combination (!!!in depth link for portforwarding).  This determines the port on which the notebook on the remote server is listening. We need this info later, when we want to connect from our local machine.
+To set options uncomment the appropriate lines (remove the leading `#`) and modify the values.
+Set `c.NotebookApp.port = 9997` to any port number you like. This determines the port on which the notebook on the remote server is listening. We need this info later, when we want to connect from our local machine.
 
 … `c.NotebookApp.ip = ‘*’`
 `c.NotebookApp.open_browser = False`
