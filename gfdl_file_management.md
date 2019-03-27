@@ -1,5 +1,5 @@
 # Tutorial: Staging large model runs on GFDL filesystem
-The GFDL filesytem is build upon several different components to e.g. archive large amounts of data (`/archive` large size, slow access) and to process smaller chunks (several choices, I will use `/work`: smaller size (needs to be cleaned regularly), faster acces).
+The GFDL filesytem is build upon several different components to e.g. archive large amounts of data (`/archive` large size, slow access) and to process smaller chunks (several choices, I will use `/work`: smaller size (needs to be cleaned regularly), faster access).
 
 I started at GFDL with little experience in how to handle data amounts of several TB [CM2.6 climate simulation](p). I initially started out with copying files from `/archive` (getting them from tape via `dmget` ) and sorting them with a loose system into my `/work/user` directory. 
 
@@ -7,10 +7,22 @@ Quickly things got quite unorganized, and even more worrisome, after a while I l
 
 I refactored my directory so that it mirrored the directory structure of the source files, which turned out to be a royal PAIN IN THE ASS, given that the the particular simulation I worked with is spread around several user archives…
 
-I needed a new solution. I wanted to be able to have a permanent central folder structure in my archive, which contains of links for files that other users created or raw data from the model (to avoid wasting disk space), and actual files for results I calculated (so that these would be ‘archived’ right away). 
+I needed a new solution. I wanted to be able to have a permanent central folder structure in my archive, which contains of links for files that other users created or raw data from the model (to avoid wasting disk space), and actual files for results I calculated (so that these would be ‘archived’ right away).
 
-I am using a fairly simple [bash script](https://github.com/jbusecke/server_setup/tree/master/scripts/gfdl_utils) to stage files to a mirror folder structure on `/work/ ` .  This way I can easily delete files on `/work` and restore them easily at any time, the links to the original files are neat and organized in `archive`.
+## Building the archive
+Link existing output (e.g. from someone elses `archive/<USER>/` folder to your archive folder and organize like you see it fit. I recommend mirroring the filestructure as much as possible, which can be easily done with the `cp -sa /archive/<some user>/model/ .` which recreates all subfolders in `/archive/<some user>/model/` into the current directory. 
+> Make sure to use an absolute path and the `/` at the end, otherwise this method wont work.
+An easier but less flexible way to do this is `ln -s /archive/<some user>/model .`. This will link the full directory but it is harder to select only certain files or patch together model output that is spread over several user accounts. 
 
+## Staging the data
+I define staging the data as getting them from the tape and copy them to a faster disk location for a limited amount of time to speed up analysis. Usually this means to actually copy not link files from my `archive` folder to my `work` folder. 
+
+I am using a fairly simple [bash script](https://github.com/jbusecke/server_setup/tree/master/scripts/gfdl_utils) to stage files to a mirror folder structure on `/work/ ` .  This way I can easily delete files on `/work` and restore them at any time, the links to the original files are neat and organized in `archive`.
+
+
+
+-----------------------------------------
+Below is pretty cluttered.
 ## History folders
 ...
 ### Viewing contents of tar archives.
