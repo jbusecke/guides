@@ -87,4 +87,8 @@ Host tiger-offcampus
 ```
 
 
+## Conda at GFDL
+GFDL maintains a mirror of conda-forge behind the firewall. Adding `--override-channels -c https://anaconda.rdhpcs.noaa.gov/conda-forge` or editing your [`.condarc`](https://github.com/jbusecke/server_setup/blob/master/dotfiles/conda/condarc_gfdl) file enables you to install environments from the analysis nodes.
+
+
 
