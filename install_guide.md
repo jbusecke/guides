@@ -90,9 +90,6 @@ jupyter notebook --generate-config
 To set options uncomment the appropriate lines (remove the leading `#`) and modify the values.
 Set `c.NotebookApp.port = 9997` to any port number you like. This determines the port on which the notebook on the remote server is listening. We need this info later, when we want to connect from our local machine.
 
-… `c.NotebookApp.ip = ‘*’`
-`c.NotebookApp.open_browser = False`
-
 To increase security (notebooks allow users to do some potentially nasty stuff) set a password for jupyter by editing the line `c.NotebookApp.password = ‘…’`.
 DO NOT PUT your actual password in here! Instead follow the instructions in the  file above 
 ```
@@ -128,10 +125,14 @@ exit()
 Now you should go ahead and open up `~/.jupyter/jupyter_notebook_config.py` where you edit the line
 `c.NotebookApp.password = 'sha1:694c4fb1fb1e:4f70d7d200b19499db9c88cbaac83c6189f08d9a'`
 The actual values after the equal sign will be different if you chose a different password.  Note that the `'` signs have to be included!
+
 Also change the lines
-`c.NotebookApp.ip = '127.0.0.1'`
+`c.NotebookApp.ip = ‘*’`
 and
-`c.NotebookApp.open_browser = False`
+`c.NotebookApp.open_browser = False`.
+
+> On some machines `c.NotebookApp.ip = ‘*’` causes problems (e.g. NASA discover), try `c.NotebookApp.ip = '127.0.0.1'` instead.
+
 
 Now we can start a notebook with 
 ```
