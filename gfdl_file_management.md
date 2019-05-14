@@ -1,7 +1,7 @@
 # Tutorial: Staging large model runs on GFDL filesystem
 The GFDL filesytem is build upon several different components to e.g. archive large amounts of data (`/archive` large size, slow access) and to process smaller chunks (several choices, I will use `/work`: smaller size (needs to be cleaned regularly), faster access).
 
-I started at GFDL with little experience in how to handle data amounts of several TB [CM2.6 climate simulation](p). I initially started out with copying files from `/archive` (getting them from tape via `dmget` ) and sorting them with a loose system into my `/work/user` directory. 
+I started at GFDL with little experience in how to handle data amounts of several TB [CM2.6 climate simulation](p). I initially started out with copying files from `/archive` (getting them from tape via `dmget` ) and sorting them with a loose system into my `/work/user` directory.
 
 Quickly things got quite unorganized, and even more worrisome, after a while I lost track of where my files originated. For these kind of model data, files are often named exactly the same and you might quickly confuse the ocean temperature files from the control run with the climate change scenario - if you are unorganized as I was.
 
@@ -10,24 +10,31 @@ I refactored my directory so that it mirrored the directory structure of the sou
 I needed a new solution. I wanted to be able to have a permanent central folder structure in my archive, which contains of links for files that other users created or raw data from the model (to avoid wasting disk space), and actual files for results I calculated (so that these would be ‘archived’ right away).
 
 ## Building the archive
-Link existing output (e.g. from someone elses `archive/<USER>/` folder to your archive folder and organize like you see it fit. I recommend mirroring the filestructure as much as possible, which can be easily done with the `cp -sa /archive/<some user>/model/ .` which recreates all subfolders in `/archive/<some user>/model/` into the current directory. 
+Link existing output (e.g. from someone elses `archive/<USER>/` folder to your archive folder and organize like you see it fit. I recommend mirroring the filestructure as much as possible, which can be easily done with the `cp -sa /archive/<some user>/model/ .` which recreates all subfolders in `/archive/<some user>/model/` into the current directory.
 > Make sure to use an absolute path and the `/` at the end, otherwise this method wont work.
-An easier but less flexible way to do this is `ln -s /archive/<some user>/model .`. This will link the full directory but it is harder to select only certain files or patch together model output that is spread over several user accounts. 
+An easier but less flexible way to do this is `ln -s /archive/<some user>/model .`. This will link the full directory but it is harder to select only certain files or patch together model output that is spread over several user accounts.
 
 ## Staging the data
-I define staging the data as getting them from the tape and copy them to a faster disk location for a limited amount of time to speed up analysis. Usually this means to actually copy not link files from my `archive` folder to my `work` folder. 
+I define staging the data as getting them from the tape and copy them to a faster disk location for a limited amount of time to speed up analysis. Usually this means to actually copy not link files from my `archive` folder to my `work` folder.
 
 I am using a fairly simple [bash script](https://github.com/jbusecke/server_setup/tree/master/scripts/gfdl_utils) to stage files to a mirror folder structure on `/work/ ` .  This way I can easily delete files on `/work` and restore them at any time, the links to the original files are neat and organized in `archive`.
+
+
+# Efficient searching for model output
+I find myself often in postprocessing and history folder, hunting for certain variables and wondering if they were saved in a certain frequency. The most realiable way to check this is usually to untar folders from the history directory (the raw model output) and then search in the resulting files for variable names and timesteps.
 
 
 
 -----------------------------------------
 Below is pretty cluttered.
 ## History folders
-...
-### Viewing contents of tar archives.
+
+## Investigating tar files
 ```
-tar -xvf 02000101.nc.tar
+tar -tvf archive.tar # show contents
+```
+```
+tar -xvf archive.tar # untar
 ```
 
 
@@ -89,6 +96,3 @@ Host tiger-offcampus
 
 ## Conda at GFDL
 GFDL maintains a mirror of conda-forge behind the firewall. Adding `--override-channels -c https://anaconda.rdhpcs.noaa.gov/conda-forge` or editing your [`.condarc`](https://github.com/jbusecke/server_setup/blob/master/dotfiles/conda/condarc_gfdl) file enables you to install environments from the analysis nodes.
-
-
-
