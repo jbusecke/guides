@@ -23,6 +23,12 @@ I am using a fairly simple [bash script](https://github.com/jbusecke/server_setu
 # Efficient searching for model output
 I find myself often in postprocessing and history folder, hunting for certain variables and wondering if they were saved in a certain frequency. The most realiable way to check this is usually to untar folders from the history directory (the raw model output) and then search in the resulting files for variable names and timesteps.
 
+The following steps are carried out in [this](TBW) script:
+1. Untar target archive into current directory
+2. Concatenate ncdump output into single text file
+
+This enables searching all
+
 
 
 -----------------------------------------
@@ -39,6 +45,10 @@ tar -xvf archive.tar # untar
 
 
 ## Untaring from history folders
+`tar -xvf archive.tar -C path` with extract the full archive into `path`.
+To extract only a certain file use `tar -xvf archive.tar -C path`
+
+
 From within the `.history/` directory use a loop
 `for folder in 'ocean' 'ocean_budgets' 'ocean_trans' 'ocean_minibling_100m' 'ocean_minibling_upper_100m' 'ocean_minibling_adv*' 'ocean_minibling_field*' 'ocean_minibling_term*' ; do mkdir -p ../pp/"${folder%'*'}"/av/monthly_1yr/;for f in *.tar; do tar -xvf $f -C ../pp/"${folder%'*'}"/av/monthly_1yr --wildcards "*.$folder.nc"; done ;done`
 The `“${folder%'*'}"` removes the trailing wildcard, so that all the files are collected in one folder.
