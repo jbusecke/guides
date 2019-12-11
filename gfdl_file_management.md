@@ -17,7 +17,16 @@ An easier but less flexible way to do this is `ln -s /archive/<some user>/model 
 ## Staging the data
 I define staging the data as getting them from the tape and copy them to a faster disk location for a limited amount of time to speed up analysis. Usually this means to actually copy not link files from my `archive` folder to my `work` folder.
 
+---------------------
+*outdated step*
 I am using a fairly simple [bash script](https://github.com/jbusecke/server_setup/tree/master/scripts/gfdl_utils) to stage files to a mirror folder structure on `/work/ ` .  This way I can easily delete files on `/work` and restore them at any time, the links to the original files are neat and organized in `archive`.
+*outdated step*
+
+---------------------
+
+## Combination with `gfdl_preprocessing`
+I use 
+
 
 
 # Efficient searching for model output
