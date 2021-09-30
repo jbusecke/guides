@@ -15,4 +15,7 @@ and
 unzip ...
 DONE
 
-There is also an offline package for cartopy with this now. Good
+! Somehow the above link did not work, but I was able to make it work the following way:
+1. Install cmip6_pp on a local machine, execute the tests (which should download the files into a local folder (find it just like above). 
+2. Manually copying all files with `*marine_poly*` in it over.
+3. Not pretty but worked for now.
